@@ -1,15 +1,15 @@
 <template>
 	<div class="header-wrapper">
 		<h1 class="logo">
-			<i class="bi bi-alarm"></i>
-			<a href="">TODAY WEATHER</a>
+			<i class="bi bi-brightness-high"></i>
+			<router-link to="/">TODAY WEATHER</router-link>
 		</h1>
 		<ul class="navi-wrap">
 			<li class="navi">
-				<a href="">DAILY</a>
+				<router-link to="/">DAILY</router-link>
 			</li>
 			<li class="navi">
-				<a href="">5DAYS</a>
+				<router-link to="/days">5DAYS</router-link>
 			</li>
 		</ul>
 	</div>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-
+	name: 'Header'
 }
 </script>
 
@@ -36,6 +36,10 @@ export default {
 		@include flex;
 		.navi {
 			padding: $md;
+			&:hover {
+				color: $colorBlack;
+				background-color: $colorLight;
+			}
 		}
 	}
 }

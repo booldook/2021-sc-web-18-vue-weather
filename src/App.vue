@@ -1,20 +1,31 @@
 <template>
 	<div class="container">
 		<Header />
+		<router-view class="router-wrapper"/>
+		<Footer />
 	</div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 
 export default {
 	name: 'App',
-	components: { Header }
+	components: { Header, Footer }
 }
 </script>
 
 <style lang="scss" scoped>
 .container {
 	margin: auto;
+	height: 100vh;
+	@include flex;
+	@include flexCol;
+	.router-wrapper {
+		flex-grow: 1;
+		border-left: 1px solid $colorLighter;
+		border-right: 1px solid $colorLighter;
+	}
 }
 </style>
