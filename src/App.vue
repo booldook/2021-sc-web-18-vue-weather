@@ -1,7 +1,9 @@
 <template>
 	<div class="container">
 		<Header />
-		<router-view class="router-wrapper"/>
+		<transition name="slide-fade" mode="out-in">
+			<router-view class="router-wrapper"/>
+		</transition>
 		<Footer />
 	</div>
 </template>
@@ -20,6 +22,7 @@ export default {
 .container {
 	margin: auto;
 	height: 100vh;
+	overflow: hidden;
 	@include flex;
 	@include flexCol;
 	.router-wrapper {

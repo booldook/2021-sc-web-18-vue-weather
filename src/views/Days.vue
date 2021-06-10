@@ -12,6 +12,6 @@ export default {
 
 <style lang="scss" scoped>
 	.days-wrapper {
-		
+		font-size: 10vh;
 	}
 </style>
