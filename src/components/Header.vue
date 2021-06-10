@@ -1,7 +1,7 @@
 <template>
 	<div class="header-wrapper">
 		<h1 class="logo">
-			<i class="fa fa-sun"></i>
+			<i class="bi bi-alarm"></i>
 			<a href="">TODAY WEATHER</a>
 		</h1>
 		<ul class="navi-wrap">
@@ -27,7 +27,16 @@ export default {
 	background-color: $colorDarker;
 	@include flex($SB, $CT);
 	.logo {
-		padding: $md
+		padding: $md;
+		i {
+			margin-right: $s75;
+		}
+	}
+	.navi-wrap {
+		@include flex;
+		.navi {
+			padding: $md;
+		}
 	}
 }
 </style>
