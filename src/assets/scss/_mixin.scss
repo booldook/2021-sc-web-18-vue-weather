@@ -1,0 +1,72 @@
+@import './variables';
+
+@mixin layer($position: absolute, $idx: auto, $top: auto, $left: auto, $right: auto, $bottom: auto) {
+	z-index: $idx;
+	position: $position;
+	left: $left;
+	right: $right;
+	top: $top;
+	bottom: $bottom;
+}
+
+@mixin center($idx: auto) {
+	z-index: $idx;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin shadow($hori: 0, $vert: 0, $blur: 0, $alpha: 1) {
+	box-shadow: $hori, $vert, $blur, rgba(0, 0, 0, $alpha);
+}
+
+@mixin bgDark($alpha) {
+	background-color: rgba(0, 0, 0, $alpha);
+}
+
+@mixin bgLight($alpha) {
+	background-color: rgba(255, 255, 255, $alpha);
+}
+
+@mixin flex($hori: $FS, $vert: $ST, $wrap: wrap) {
+	display: flex;
+	justify-content: $hori;
+	align-items: $vert;
+	flex-wrap: $wrap;
+}
+
+@mixin flexCol {
+	flex-direction: column;
+}
+
+@mixin XL {
+	@media screen and (max-width: $w-xl) {
+		@content;
+	}
+}
+
+@mixin LG {
+	@media screen and (max-width: $w-lg) {
+		@content;
+	}
+}
+
+@mixin MD {
+	@media screen and (max-width: $w-md) {
+		@content;
+	}
+}
+
+@mixin SM {
+	@media screen and (max-width: $w-sm) {
+		@content;
+	}
+}
+
+@mixin XS {
+	@media screen and (max-width: $w-xs) {
+		@content;
+	}
+}
+

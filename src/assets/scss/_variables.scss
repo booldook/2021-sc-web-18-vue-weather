@@ -1,0 +1,46 @@
+/* 기본컬러 */
+$colorBlack: #111;
+$colorDarker: #333;
+$colorDark: #555;
+$colorGrey: #777;
+$colorGray: #777;
+$colorDefault: #999;
+$colorLight: #bbb;
+$colorLighter: #ddd;
+$colorBright: #eee;
+$colorWhite: #f9f9f9;
+
+/* 글씨 색상 */
+$txtPrimary: #2a313d;
+$txtAccent: #9e501c;
+$txtDanger: #d3213e;
+
+/* 반응형 */
+$w-xl: 1400px;
+$w-lg: 1200px;
+$w-md: 992px;
+$w-sm: 768px;
+$w-xs: 576px;
+
+/* 폰트 */
+$font-noto-kr:  'Noto Sans KR', sans-serif;
+$font-sf-nanum-kr:  'Nanum Myeongjo', serif;
+
+/* 사이즈 */
+$xss: 0.25em;
+$xs: 0.5em;
+$sm: 0.75em;
+$md: 1em;
+$lg: 1.25em;
+$xl: 1.5em;
+$xll: 1.75em;
+$xlll: 2em;
+
+/* FLEX */
+$CT: center;
+$FS: flex-start;
+$FE: flex-end;
+$SB: space-between;
+$SA: space-around;
+$SE: space-evenly;
+$ST: stretch;
