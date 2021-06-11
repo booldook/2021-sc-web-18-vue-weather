@@ -14,7 +14,7 @@ export default {
 	async ACT_COORDS({ commit }, v) {
 		try {
 			const coords = await getCoords()
-			commit('MUT_COORDS', coords)
+			commit('MUT_COORDS', coords)	
 		}
 		catch(err) {
 			console.log(err)

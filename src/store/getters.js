@@ -10,6 +10,7 @@ export default {
 		return state.days;
 	},
 	GET_COORDS(state) {
+		console.log(state.coords)
 		return state.coords;
 	},
 }
