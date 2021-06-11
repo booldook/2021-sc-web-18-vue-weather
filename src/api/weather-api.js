@@ -14,12 +14,13 @@ v = {
 	lon: 127.000
 }
 axios return {..., data: 실제 데이터}
+
+const r = await axios.get('주소', { params: { lat: 37, lon: 127 ... } })
 */
 
 export default async (url, v) => {
 	try {
 		const params = v ? { ...PARAMS, ...v } : { ...PARAMS, ...await getCoords() }
-		console.log(url, params)
 		const { data } = await axios.get(url === 'daily' ? DAILY_URL : DAYS_URL, { params })
 		return data
 	}
