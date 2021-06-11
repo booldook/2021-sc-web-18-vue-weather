@@ -5,8 +5,12 @@
 </template>
 
 <script>
+// import { mapActions } from 'vuex'
 export default {
-	name: 'Daily'
+	name: 'Daily',
+	created() {
+		this.$store.dispatch('ACT_COORDS', null)
+	}
 }
 </script>
 

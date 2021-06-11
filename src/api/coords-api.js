@@ -1,18 +1,7 @@
-export default a = (cb) => {
-
-		navigator.geolocation.getCurrentPosition((r) => {
-			cb(r)
-		}, (err) => {
-			reject(err)
-		})
-
-}
-
-try {
-	const coords = a(function(r) {
-		console.log(r)
-	});
-}
-catch(err) {
-
+export default () => {
+	return new Promise((resolve, reject) => {
+		navigator.geolocation.getCurrentPosition(r => {
+			resolve({ lat: r.coords.latitude, lon: r.coords.longitude })
+		}, err => reject(err))
+	})
 }
