@@ -1,0 +1,33 @@
+<script>
+function getCoords() {
+	return new Promise(function(resolve, reject) {
+		navigator.geolocation.getCurrentPosition((r) => {
+			resolve(r)
+		}, (err) => {
+			reject(err)
+		})
+	})
+}
+
+
+function init() {
+	getCoords().then(r => {
+		console.log(r)
+	}).catch(err => {
+		console.log(err)
+	})
+}
+init();
+
+
+async function init2() {
+	try {
+		const coords = await getCoords()
+		console.log(coords)
+	}
+	catch(err) {
+		console.log(err)
+	}
+}
+init2()
+</script>

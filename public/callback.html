@@ -1,0 +1,17 @@
+<script>
+function getCoords(cb) {
+	navigator.geolocation.getCurrentPosition((r) => {
+		return cb(null, r)
+	}, (err) => {
+		return cb(err)
+	})
+}
+
+
+function init() {
+	getCoords(function(err, r) {
+		console.log(err, r);
+	}) 
+}
+init();
+</script>
