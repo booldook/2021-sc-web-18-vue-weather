@@ -6,7 +6,10 @@
 
 <script>
 export default {
-	name: 'DAYS'
+	name: 'DAYS',
+	created() {
+		this.$store.dispatch('ACT_DAYS', null)
+	}
 }
 </script>
 

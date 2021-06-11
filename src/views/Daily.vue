@@ -1,8 +1,6 @@
 <template>
 	<div class="daily-wrapper">
 		DAILY
-		<p class="">{{ getLat }}</p>
-		<p class="">{{ getLon }}</p>
 	</div>
 </template>
 
@@ -17,17 +15,10 @@ export default {
 		}
 	},
 	computed: {
-		/*
-		getLat: function() {
-			return (this.$store.state.coords) ? this.$store.state.coords.lat : ''
-		},
-		getLon: function() {
-			return (this.$store.state.coords) ? this.$store.state.coords.lon : ''
-		}
-		*/
+		
 	},
 	created() {
-		this.$store.dispatch('ACT_COORDS', null)
+		this.$store.dispatch('ACT_DAILY', null)
 	}
 }
 </script>
