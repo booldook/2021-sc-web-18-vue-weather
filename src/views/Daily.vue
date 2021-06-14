@@ -3,6 +3,7 @@
 		<Title :cityName="cityName" />
 		<b-form-select class="city-select" v-model="selected" :options="options" size="lg" />
 		<b-button variant="dark" @click="dispatchWeather">현재위치의 날씨 정보 확인</b-button>
+		<Icon :icon="icon" :width="width" />
 	</div>
 </template>
 
@@ -10,16 +11,18 @@
 import { mapGetters } from 'vuex'
 import axios from 'axios'
 
-import Title from '../components/Title'
+import Title from '../components/Title.vue'
+import Icon from '../components/Icon.vue'
 
 export default {
 	name: 'Daily',
-	components: { Title },
+	components: { Title, Icon },
 	data() {
 		// 현재 컴포넌트에서 쓰일 변수를 등록하는 곳
 		return {
 			city: [],
 			selected: '',
+			width: '80px'
 		}
 	},
 	props: ['data'], // 부모가 전해준 변수
@@ -42,6 +45,9 @@ export default {
 		...mapGetters(['GET_DAILY']),
 		cityName: function() {
 			return this.GET_DAILY ? this.GET_DAILY.name : ''
+		},
+		icon: function() {
+			return this.GET_DAILY ? this.GET_DAILY.weather[0].icon : null
 		}
 	},
 	watch: {
