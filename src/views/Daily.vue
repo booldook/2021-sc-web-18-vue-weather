@@ -1,9 +1,11 @@
 <template>
 	<div class="daily-wrapper">
 		<Title :cityName="cityName" />
+		<Date :date="date" />
 		<b-form-select class="city-select" v-model="selected" :options="options" size="lg" />
-		<b-button variant="dark" @click="dispatchWeather">현재위치의 날씨 정보 확인</b-button>
+		<b-button variant="dark" @click="onClick">현재위치의 날씨 정보 확인</b-button>
 		<Icon :icon="icon" :width="width" />
+		<Temp :temp="temp" />
 	</div>
 </template>
 
@@ -13,10 +15,12 @@ import axios from 'axios'
 
 import Title from '../components/Title.vue'
 import Icon from '../components/Icon.vue'
+import Temp from '../components/Temp.vue'
+import Date from '../components/Date.vue'
 
 export default {
 	name: 'Daily',
-	components: { Title, Icon },
+	components: { Title, Icon, Temp, Date },
 	data() {
 		// 현재 컴포넌트에서 쓰일 변수를 등록하는 곳
 		return {
@@ -44,10 +48,18 @@ export default {
 		},
 		...mapGetters(['GET_DAILY']),
 		cityName: function() {
-			return this.GET_DAILY ? this.GET_DAILY.name : ''
+			// return this.GET_DAILY ? this.GET_DAILY.name : ''
+			return this.getValue(this.GET_DAILY, 'name')
 		},
 		icon: function() {
-			return this.GET_DAILY ? this.GET_DAILY.weather[0].icon : null
+			// return this.GET_DAILY && this.GET_DAILY.weather ? this.GET_DAILY.weather[0].icon : null
+			return this.getValue(this.GET_DAILY, 'weather', 'icon')
+		},
+		temp: function() {
+			return this.getValue(this.GET_DAILY, 'main', 'temp')
+		},
+		date: function() {
+			return this.getValue(this.GET_DAILY, 'dt')
 		}
 	},
 	watch: {
@@ -69,6 +81,15 @@ export default {
 		dispatchWeather(v = null) {
 			// select의 값이 변하면 날씨정보를 요청하는 로직
 			this.$store.dispatch('ACT_DAILY', v)
+		},
+		getValue(obj, field, field2 = null) {
+			return obj && obj[field]
+							? field2 
+								? Array.isArray(obj[field]) 
+									? obj[field][0][field2]
+									: obj[field][field2]
+								: obj[field]
+							: ''
 		}
 	}
 }
