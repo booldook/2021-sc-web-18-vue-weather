@@ -1,0 +1,23 @@
+<script>
+	function mapGetters(array) {
+		const arr = []
+		const fns = {
+			GET_DAILY: function(state) {
+				return state.daily
+			},
+			GET_DAYS: function(state) {
+				return state.days
+			}
+		}
+		array.forEach(v => {
+			arr.push( fns[v] )
+		})
+		return arr
+	}
+
+	const computed = {
+		...mapGetters( ['GET_DAILY', 'GET_DAYS'])
+	}
+
+	console.log(computed)
+</script>

@@ -16,7 +16,7 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video, input, button {
+time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -56,7 +56,7 @@ a {
 }
 
 img {vertical-align: bottom;}
-input, button {border-radius: 0; outline: none; border: none; background-color: transparent; cursor: pointer;}
+// input, button {border-radius: 0; outline: none; border: none; background-color: transparent; cursor: pointer;}
 
 /******************** Base ***********************/
 .clearfix::after {display: block; content: ""; clear: both;}
