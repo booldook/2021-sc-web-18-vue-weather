@@ -1,12 +1,10 @@
 <template>
 	<div class="daily-wrapper">
 		<h2 class="title-wrap">
-			날씨정보 <span>{{ cityName }}</span>
+			날씨정보 
 		</h2>
 		<b-form-select class="city-select" v-model="selected" :options="options" size="lg" />
-		<div>
-			<button class="btn btn-primary" @click="onClick">현재위치의 날씨 정보 확인</button>
-		</div>
+		<b-button variant="dark" @click="onClick">현재위치의 날씨 정보 확인</b-button>
 	</div>
 </template>
 
@@ -31,7 +29,7 @@ export default {
 			const city = []
 			this.city.forEach( (v, i) => {
 				let isCity = v.lat && v.lon
-				if(i == 0) city.push({ text: '날씨를 알고 싶은 도시를 선택하세요.', value: '', disabled: true })
+				if(i == 0) city.push({ text: '도시를 선택하세요.', value: '', disabled: true })
 				if(!isCity) city.push({ text: '-----------', value: '', disabled: true })
 				city.push({
 					text: v.name, value: { lat: v.lat, lon: v.lon }, disabled: isCity ? false : true 
@@ -40,10 +38,10 @@ export default {
 			})
 			return city
 		},
-		...mapGetters(['GET_DAILY']),
 		cityName: function() {
 			return this.GET_DAILY ? this.GET_DAILY.name : ''
-		}
+		},
+		...mapGetters(['GET_DAILY']),
 	},
 	watch: {
 		// 내가 변해서 다른 값들을 변하게 하려면 watch에 등록
@@ -72,6 +70,8 @@ export default {
 <style lang="scss" scoped>
 	.daily-wrapper {
 		text-align: center;
+		@include flex($ST,$CT);
+		@include flexCol;
 		h2.title-wrap {
 			padding: 1em 0;
 			font-size: 2em;
