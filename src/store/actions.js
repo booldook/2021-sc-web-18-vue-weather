@@ -17,5 +17,8 @@ export default {
 		catch(err) {
 			console.log(err)
 		}
-	}
+	},
+	ACT_COORDS({ commit }, v) {
+		commit('MUT_COORDS', v)
+	},
 }

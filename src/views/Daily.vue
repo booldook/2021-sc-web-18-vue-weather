@@ -4,10 +4,12 @@
 		<Date :date="date" />
 		<b-form-select class="city-select" v-model="selected" :options="options" size="lg" />
 		<b-button variant="dark" @click="onClick">현재위치의 날씨 정보 확인</b-button>
-		<Icon :icon="icon" :width="width" />
-		<Temp :temp="temp" />
-		<Description :main="main" :description="description" />
-		<Wind :wind="wind" :key="GET_DAILY.dt" />
+		<div class="daily-wrap">
+			<Icon class="icon-wrap" :icon="icon" />
+			<Temp class="temp-wrap" :temp="temp" />
+			<Description class="desc-wrap" :main="main" :description="description" />
+			<Wind class="wind-wrap" :wind="wind" :key="GET_DAILY.dt" />
+		</div>
 	</div>
 </template>
 
@@ -30,7 +32,6 @@ export default {
 		return {
 			city: [],
 			selected: '',
-			width: '80px'
 		}
 	},
 	props: ['data'], // 부모가 전해준 변수
@@ -50,7 +51,7 @@ export default {
 			})
 			return city
 		},
-		...mapGetters(['GET_DAILY']),
+		...mapGetters(['GET_DAILY', 'GET_COORDS']),
 		cityName: function() {
 			// return this.GET_DAILY ? this.GET_DAILY.name : ''
 			return this.getValue(this.GET_DAILY, 'name')
@@ -86,17 +87,30 @@ export default {
 		},
 	},
 	async created() {	// 자신이 실행될 때 한 번 실행한다.
-		this.dispatchWeather()
+		// console.log('created')
+		// console.log(this.GET_COORDS)
+		this.dispatchWeather(this.GET_COORDS)
 		const { data } = await axios.get('/json/city.json') // 도시정보를 가져와.
 		this.city = data.city
 	},
+	updated() {
+		// console.log('updated')
+	},
+	mounted() {
+		// console.log('mounted')
+	},
+	destroyed() {
+		// console.log('destroyed')
+	},
 	methods: {
 		onClick(e) {
+			this.selected = ''
 			this.dispatchWeather()
 		},
 		dispatchWeather(v = null) {
 			// select의 값이 변하면 날씨정보를 요청하는 로직
 			this.$store.dispatch('ACT_DAILY', v)
+			this.$store.dispatch('ACT_COORDS', v)
 		},
 		getValue(obj, field, field2 = null) {
 			return obj && obj[field]
@@ -119,6 +133,16 @@ export default {
 		.city-select {
 			width: 50%;
 			margin: 1em auto;
+		}
+		.daily-wrap {
+			@include flex($ST,$CT);
+			@include flexCol;
+			margin-top: 1em;
+			font-size: 1.5em;
+			.icon-wrap {width:120px; margin: .5em 0;}
+			.temp-wrap {margin: .5em 0;}
+			.desc-wrap {margin: .25em 0;}
+			.wind-wrap {margin: .25em 0;}
 		}
 	}
 </style>

@@ -1,5 +1,5 @@
 <template>
-	<div class="icon-wrap" :style="style">
+	<div>
 		<img :src="src" alt="" class="w-100">
 	</div>
 </template>

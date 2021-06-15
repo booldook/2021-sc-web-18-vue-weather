@@ -6,4 +6,7 @@ export default {
 	GET_DAYS: function(state) {
 		return state.days
 	},
+	GET_COORDS: function(state) {
+		return state.coords
+	},
 }
