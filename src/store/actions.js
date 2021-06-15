@@ -4,7 +4,9 @@ import getWeather from '../api/weather-api'
 export default {
 	async ACT_DAILY({ commit }, v) {
 		try {
+			commit('MUT_LOADING', true)
 			commit('MUT_DAILY', await getWeather('daily', v));
+			commit('MUT_LOADING', false)
 		}
 		catch(err) {
 			console.log(err)
@@ -12,7 +14,9 @@ export default {
 	},
 	async ACT_DAYS({ commit }, v) {
 		try {
+			commit('MUT_LOADING', true)
 			commit('MUT_DAYS', await getWeather('days', v));
+			commit('MUT_LOADING', false)
 		}
 		catch(err) {
 			console.log(err)
@@ -20,5 +24,8 @@ export default {
 	},
 	ACT_COORDS({ commit }, v) {
 		commit('MUT_COORDS', v)
+	},
+	ACT_LOADING({ commit }, v) {
+		commit('MUT_LOADING', v)
 	},
 }

@@ -5,18 +5,29 @@
 			<router-view class="router-wrapper"/>
 		</transition>
 		<Footer />
+		<Loading 
+		:active.sync="GET_LOADING" 
+		:opacity="opacity" />
 	</div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import Loading from 'vue-loading-overlay'
 
 export default {
 	name: 'App',
-	components: { Header, Footer },
-	created() {
-		
+	components: { Header, Footer, Loading },
+	data() {
+		return {
+			opacity: .9
+		}
+	},
+	computed: {
+		...mapGetters(['GET_LOADING'])
 	}
 }
 </script>
