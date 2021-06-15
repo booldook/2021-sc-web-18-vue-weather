@@ -1,6 +1,6 @@
 <template>
 	<div class="daily-wrapper">
-		<Title :cityName="cityName" />
+		<Title class="title-wrap" :title="title" />
 		<Date :date="date" />
 		<b-form-select class="city-select" v-model="selected" :options="options" size="lg" />
 		<b-button variant="dark" @click="onClick">현재위치의 날씨 정보 확인</b-button>
@@ -16,6 +16,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import axios from 'axios'
+import { getValue } from '../modules/utils'
 
 import Title from '../components/Title.vue'
 import Icon from '../components/Icon.vue'
@@ -52,30 +53,30 @@ export default {
 			return city
 		},
 		...mapGetters(['GET_DAILY', 'GET_COORDS']),
-		cityName: function() {
+		title: function() {
 			// return this.GET_DAILY ? this.GET_DAILY.name : ''
-			return this.getValue(this.GET_DAILY, 'name')
+			return '날씨정보 [' + getValue(this.GET_DAILY, 'name') + ']'
 		},
 		icon: function() {
 			// return this.GET_DAILY && this.GET_DAILY.weather ? this.GET_DAILY.weather[0].icon : null
-			return this.getValue(this.GET_DAILY, 'weather', 'icon')
+			return getValue(this.GET_DAILY, 'weather', 'icon')
 		},
 		temp: function() {
-			return this.getValue(this.GET_DAILY, 'main', 'temp')
+			return getValue(this.GET_DAILY, 'main', 'temp')
 		},
 		date: function() {
-			return this.getValue(this.GET_DAILY, 'dt')
+			return getValue(this.GET_DAILY, 'dt')
 		},
 		main: function() {
-			return this.getValue(this.GET_DAILY, 'weather', 'main')
+			return getValue(this.GET_DAILY, 'weather', 'main')
 		},
 		description: function() {
-			return this.getValue(this.GET_DAILY, 'weather', 'description')
+			return getValue(this.GET_DAILY, 'weather', 'description')
 		},
 		wind: function() {
 			return {
-				deg: this.getValue(this.GET_DAILY, 'wind', 'deg'),
-				speed: this.getValue(this.GET_DAILY, 'wind', 'speed')
+				deg: getValue(this.GET_DAILY, 'wind', 'deg'),
+				speed: getValue(this.GET_DAILY, 'wind', 'speed')
 			}
 		}
 	},
@@ -95,7 +96,7 @@ export default {
 	},
 	updated() {
 		// console.log('updated')
-		this.selected = this.GET_COORDS
+		if(this.GET_COORDS) this.selected = this.GET_COORDS
 	},
 	mounted() {
 		// console.log('mounted')
@@ -113,15 +114,6 @@ export default {
 			this.$store.dispatch('ACT_DAILY', v)
 			this.$store.dispatch('ACT_COORDS', v)
 		},
-		getValue(obj, field, field2 = null) {
-			return obj && obj[field]
-							? field2 
-								? Array.isArray(obj[field]) 
-									? obj[field][0][field2]
-									: obj[field][field2]
-								: obj[field]
-							: ''
-		}
 	}
 }
 </script>
@@ -134,6 +126,9 @@ export default {
 		.city-select {
 			width: 50%;
 			margin: 1em auto;
+		}
+		.title-wrap {
+			font-size: 2em; margin:  1em 0 .5em 0;
 		}
 		.daily-wrap {
 			@include flex($ST,$CT);
