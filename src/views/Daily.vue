@@ -95,6 +95,7 @@ export default {
 	},
 	updated() {
 		// console.log('updated')
+		this.selected = this.GET_COORDS
 	},
 	mounted() {
 		// console.log('mounted')
