@@ -6,6 +6,8 @@
 		<b-button variant="dark" @click="onClick">현재위치의 날씨 정보 확인</b-button>
 		<Icon :icon="icon" :width="width" />
 		<Temp :temp="temp" />
+		<Description :main="main" :description="description" />
+		<Wind :wind="wind" :key="GET_DAILY.dt" />
 	</div>
 </template>
 
@@ -17,10 +19,12 @@ import Title from '../components/Title.vue'
 import Icon from '../components/Icon.vue'
 import Temp from '../components/Temp.vue'
 import Date from '../components/Date.vue'
+import Description from '../components/Desciption.vue'
+import Wind from '../components/Wind.vue'
 
 export default {
 	name: 'Daily',
-	components: { Title, Icon, Temp, Date },
+	components: { Title, Icon, Temp, Date, Description, Wind },
 	data() {
 		// 현재 컴포넌트에서 쓰일 변수를 등록하는 곳
 		return {
@@ -60,6 +64,18 @@ export default {
 		},
 		date: function() {
 			return this.getValue(this.GET_DAILY, 'dt')
+		},
+		main: function() {
+			return this.getValue(this.GET_DAILY, 'weather', 'main')
+		},
+		description: function() {
+			return this.getValue(this.GET_DAILY, 'weather', 'description')
+		},
+		wind: function() {
+			return {
+				deg: this.getValue(this.GET_DAILY, 'wind', 'deg'),
+				speed: this.getValue(this.GET_DAILY, 'wind', 'speed')
+			}
 		}
 	},
 	watch: {
