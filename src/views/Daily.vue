@@ -121,7 +121,7 @@ export default {
 <style lang="scss" scoped>
 	.daily-wrapper {
 		text-align: center;
-		@include flex($ST,$CT);
+		@include flex($ST, $CT, nowrap);
 		@include flexCol;
 		.city-select {
 			width: 50%;
