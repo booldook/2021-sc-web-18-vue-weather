@@ -4,7 +4,7 @@
 
 <script>
 export default {
-	name: 'Description',
+	name: 'Info',
 	props: ['main', 'description'],
 }
 </script>

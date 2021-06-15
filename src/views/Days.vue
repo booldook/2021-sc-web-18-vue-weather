@@ -2,18 +2,7 @@
 	<div class="days-wrapper">
 		<Title class="title-wrap" :title="title" />
 		<div class="list-wrapper">
-			<b-card
-			v-for="v in lists"
-			:key="v.id" 
-			class="list"
-			title="Card Title" 
-			img-src="https://picsum.photos/600/300/?image=25" 
-			img-alt="Image" 
-			img-top tag="article"> 
-				<b-card-text>
-					Some quick example text to build on the card title and make up the bulk of the card's content.
-				</b-card-text>
-			</b-card>
+			<List v-for="v in GET_DAYS.list" :key="v.id" :data="v" />
 		</div>
 	</div>
 </template>
@@ -24,30 +13,14 @@ import { getValue } from '../modules/utils'
 
 import Title from '../components/Title.vue'
 import Date from '../components/Date.vue'
+import List from '../components/List.vue'
 
 export default {
 	name: 'DAYS',
-	components: { Title, Date },
+	components: { Title, Date, List },
 	data() {
 		return {
-			lists: [
-				{ id: "1" },
-				{ id: "2" },
-				{ id: "3" },
-				{ id: "4" },
-				{ id: "5" },
-				{ id: "6" },
-				{ id: "7" },
-				{ id: "8" },
-				{ id: "9" },
-				{ id: "10" },
-				{ id: "11" },
-				{ id: "12" },
-				{ id: "13" },
-				{ id: "14" },
-				{ id: "15" },
-				{ id: "16" },
-			] 
+			
 		}
 	},
 	computed: {
@@ -67,7 +40,7 @@ export default {
 
 <style lang="scss" scoped>
 	.days-wrapper {
-		@include flex($ST, $ST);
+		@include flex($ST, $ST, nowrap);
 		@include flexCol;
 		font-size: 1em;
 		.title-wrap {

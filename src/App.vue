@@ -26,10 +26,11 @@ export default {
 	margin: auto;
 	height: 100vh;
 	overflow: hidden;
-	@include flex;
+	@include flex($FS, $ST, nowrap);
 	@include flexCol;
 	.router-wrapper {
 		flex-grow: 1;
+		overflow-y: auto;
 		border-left: 1px solid $colorLighter;
 		border-right: 1px solid $colorLighter;
 	}

@@ -7,7 +7,7 @@
 		<div class="daily-wrap">
 			<Icon class="icon-wrap" :icon="icon" />
 			<Temp class="temp-wrap" :temp="temp" />
-			<Description class="desc-wrap" :main="main" :description="description" />
+			<Info class="desc-wrap" :main="main" :description="description" />
 			<Wind class="wind-wrap" :wind="wind" :key="GET_DAILY.dt" />
 		</div>
 	</div>
@@ -22,12 +22,12 @@ import Title from '../components/Title.vue'
 import Icon from '../components/Icon.vue'
 import Temp from '../components/Temp.vue'
 import Date from '../components/Date.vue'
-import Description from '../components/Desciption.vue'
+import Info from '../components/Info.vue'
 import Wind from '../components/Wind.vue'
 
 export default {
 	name: 'Daily',
-	components: { Title, Icon, Temp, Date, Description, Wind },
+	components: { Title, Icon, Temp, Date, Info, Wind },
 	data() {
 		// 현재 컴포넌트에서 쓰일 변수를 등록하는 곳
 		return {
